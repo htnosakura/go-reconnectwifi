@@ -20,12 +20,12 @@ A Windows command line tool for automatically reconnecting to a specified WiFi n
 
 1.  克隆仓库 (或下载源代码):
     ```bash
-    git clone [https://github.com/YourGitHubUsername/YourRepoName.git](https://github.com/YourGitHubUsername/YourRepoName.git)
-    cd YourRepoName
+    git clone [https://github.com/htnosakura/go-reconnectwifi.git](https://github.com/htnosakura/go-reconnectwifi.git)
+    cd go-reconnectwifi
     ```
-2.  编译可执行文件 (请确保您的主 Go 文件是 `wifi_reconnect_slog.go` 或相应更新命令):
+2.  编译可执行文件:
     ```bash
-    go build -o wifi_reconnector.exe wifi_reconnect_slog.go
+    go build -o go-reconnectwifi.exe
     ```
 
 ### 使用方法 (命令行)
@@ -41,7 +41,7 @@ A Windows command line tool for automatically reconnecting to a specified WiFi n
 **示例:**
 
 ```bash
-.\wifi_reconnector.exe -ssid "你的WiFi名称" -interface "WLAN" -interval 30s -logfile "reconnect.log" -loglevel debug
+.\go-reconnectwifi.exe -ssid "你的WiFi名称" -interface "WLAN" -interval 30s -logfile "reconnect.log" -loglevel debug
 ```
 
 ### 许可证
@@ -61,12 +61,12 @@ A Windows command line tool for automatically reconnecting to a specified WiFi n
 
 1.  Clone the repository (or download the source code):
     ```bash
-    git clone [https://github.com/YourGitHubUsername/YourRepoName.git](https://github.com/YourGitHubUsername/YourRepoName.git)
-    cd YourRepoName
+    git clone [https://github.com/htnosakura/go-reconnectwifi.git](https://github.com/htnosakura/go-reconnectwifi.git)
+    cd go-reconnectwifi
     ```
-2.  Build the executable (ensure your main Go file is `wifi_reconnect_slog.go` or update the command):
+2.  Build the executable:
     ```bash
-    go build -o wifi_reconnector.exe wifi_reconnect_slog.go
+    go build -o go-reconnectwifi.exe
     ```
 
 ### Usage (Command-Line)
@@ -82,7 +82,7 @@ Run the program from a Command Prompt (CMD) or PowerShell using the following pa
 **Example:**
 
 ```bash
-.\wifi_reconnector.exe -ssid "YourWiFiSSID" -interface "WLAN" -interval 30s -logfile "reconnect.log" -loglevel debug
+.\go-reconnectwifi.exe -ssid "YourWiFiSSID" -interface "WLAN" -interval 30s -logfile "reconnect.log" -loglevel debug
 ````
 
 ### License
