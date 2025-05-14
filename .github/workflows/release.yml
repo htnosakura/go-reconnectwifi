@@ -25,7 +25,7 @@ jobs:
         with:
           go-version: '1.21' # Specify the Go version your project uses
 
-      # Step 3: Define names for binaries and archives based on the tag
+      # Step 3: Define names for binaries based on the tag
       - name: Set up environment variables for names
         id: set_names
         run: |
@@ -34,7 +34,6 @@ jobs:
           # GITHUB_REF_NAME will be the tag (e.g., v1.0.0)
           VERSIONED_BINARY_NAME="${BINARY_BASE_NAME}_${GITHUB_REF_NAME}"
           echo "EXE_NAME=${VERSIONED_BINARY_NAME}.exe" >> $GITHUB_OUTPUT
-          echo "ZIP_NAME=${VERSIONED_BINARY_NAME}_windows_amd64.zip" >> $GITHUB_OUTPUT
           # Your main Go source file (the one with package main)
           echo "SOURCE_FILE=main.go" >> $GITHUB_OUTPUT
 
@@ -50,16 +49,7 @@ jobs:
           echo "Build complete. Executable size:"
           ls -lh ${{ steps.set_names.outputs.EXE_NAME }}
 
-      # Step 5: Create a ZIP archive of the executable
-      # This makes the download cleaner and is standard practice
-      - name: Create ZIP archive
-        run: |
-          echo "Creating ZIP archive ${{ steps.set_names.outputs.ZIP_NAME }} containing ${{ steps.set_names.outputs.EXE_NAME }}"
-          zip ${{ steps.set_names.outputs.ZIP_NAME }} ${{ steps.set_names.outputs.EXE_NAME }}
-          echo "ZIP archive created. Size:"
-          ls -lh ${{ steps.set_names.outputs.ZIP_NAME }}
-
-      # Step 6: Create a GitHub Release and upload the ZIP archive
+      # Step 5: Create a GitHub Release and upload the .exe file
       # This uses the GitHub CLI, which is pre-installed on GitHub-hosted runners
       - name: Create GitHub Release
         env:
@@ -69,5 +59,5 @@ jobs:
           gh release create ${{ github.ref_name }} \
             --title "Release ${{ github.ref_name }}" \
             --generate-notes \
-            ${{ steps.set_names.outputs.ZIP_NAME }} # Attach the zip file as a release asset
-          echo "Release created and asset uploaded."
+            ${{ steps.set_names.outputs.EXE_NAME }} # Attach the .exe file directly as a release asset
+          echo "Release created and .exe asset uploaded."
